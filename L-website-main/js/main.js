@@ -187,12 +187,32 @@
         const ok = form.parentElement.querySelector(".success");
         if (ok) ok.style.display = "block";
       };
-      // Netlify Forms: POST encoded body so submissions arrive in the Netlify dashboard.
-      if (form.hasAttribute("data-netlify") || form.getAttribute("netlify") !== null) {
-        const data = new FormData(form);
-        if (!data.get("form-name")) {
-          data.set("form-name", form.getAttribute("name") || "form");
-        }
+
+      const data = new FormData(form);
+      if (!data.get("form-name")) {
+        data.set("form-name", form.getAttribute("name") || "form");
+      }
+
+      const endpoint = form.getAttribute("data-form-endpoint");
+      const host = location.hostname || "";
+      const onNetlify = /\.netlify\.app$|\.netlify\.com$/i.test(host);
+
+      // Optional custom endpoint (e.g. form backend). Never commit secrets here —
+      // set data-form-endpoint on the form element in the environment that needs it.
+      if (endpoint) {
+        try {
+          await fetch(endpoint, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: data,
+          });
+        } catch (e) {}
+        showSuccess();
+        return;
+      }
+
+      // Netlify Forms when hosted on Netlify.
+      if (onNetlify && (form.hasAttribute("data-netlify") || form.getAttribute("netlify") !== null)) {
         try {
           await fetch("/", {
             method: "POST",
@@ -200,7 +220,29 @@
             body: new URLSearchParams(data).toString(),
           });
         } catch (e) {}
+        showSuccess();
+        return;
       }
+
+      // EC2 / plain Nginx static hosting: mailto fallback (no server-side form processor).
+      const formName = (form.getAttribute("name") || "form").toLowerCase();
+      const lines = [];
+      data.forEach((value, key) => {
+        if (key === "bot-field" || key === "form-name") return;
+        lines.push(key + ": " + String(value));
+      });
+      const subject =
+        formName === "newsletter"
+          ? "Lumedia newsletter signup"
+          : formName === "contact"
+            ? "Lumedia project enquiry"
+            : "Lumedia website form";
+      const mailto =
+        "mailto:contact@lumediaads.com?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(lines.join("\n"));
+      window.location.href = mailto;
       showSuccess();
     });
   });
