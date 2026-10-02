@@ -6,11 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lumedia — Creative Studio</title>
   <meta name="description" content="Lumedia is a hands-on creative studio building websites, brands, and content for ambitious companies.">
+  <link rel="canonical" href="https://lumediaads.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lumedia">
+  <meta property="og:title" content="Lumedia — Creative Studio">
+  <meta property="og:description" content="Lumedia is a hands-on creative studio building websites, brands, and content for ambitious companies.">
+  <meta property="og:url" content="https://lumediaads.com/">
+  <meta property="og:image" content="https://lumediaads.com/assets/logo.png">
+  <meta name="twitter:image" content="https://lumediaads.com/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lumedia — Creative Studio">
+  <meta name="twitter:description" content="Lumedia is a hands-on creative studio building websites, brands, and content for ambitious companies.">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=46">
+  <link rel="stylesheet" href="css/styles.css?v=65">
 </head>
 <body data-page="home">
   <div class="loader" aria-hidden="true">
@@ -30,8 +41,13 @@
     <nav class="nav-links" aria-label="Primary">
       <a class="nav-link" data-page="home" href="index.html"><span>Home</span><span>Home</span></a>
       <a class="nav-link" data-page="about" href="about.html"><span>About us</span><span>About us</span></a>
-      <a class="nav-link" data-page="services" href="services.html"><span>Services</span><span>Services</span></a>
-      
+      <div class="nav-drop">
+        <a class="nav-link" data-page="services" href="outdoor-led.html"><span>Services</span><span>Services</span></a>
+        <div class="nav-drop-menu">
+          <a href="outdoor-led.html">Outdoor LED Displays</a>
+          <a href="indoor-led.html">Indoor LED Displays</a>
+        </div>
+      </div>
       <a class="nav-link" data-page="career" href="career.html"><span>Career</span><span>Career</span></a>
       <a class="nav-link" data-page="contact" href="contact.html"><span>Contact</span><span>Contact</span></a>
     </nav>
@@ -43,8 +59,9 @@
       <nav class="menu-links">
         <a href="index.html">Home</a>
         <a href="about.html">About us</a>
-        <a href="services.html">Services</a>
-        
+        <span class="menu-label">Services</span>
+        <a class="menu-sub" href="outdoor-led.html">Outdoor LED Displays</a>
+        <a class="menu-sub" href="indoor-led.html">Indoor LED Displays</a>
         <a href="career.html">Career</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -53,14 +70,14 @@
           <a href="contact.html">Start a project <i class="dot"></i></a>
         </div>
         <div class="menu-pills">
-          <a class="soc" href="https://instagram.com" aria-label="Instagram"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68642b559d94bcc3773fc317_social-insta.svg" alt=""></a>
-          <a class="soc" href="https://x.com" aria-label="X"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68642b569d94bcc3773fc318_social-x.svg" alt=""></a>
-          <a class="soc" href="https://dribbble.com" aria-label="Dribbble"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/686464e5c7256ddd81c074ee_dribble.svg" alt=""></a>
+          <a class="soc" href="https://instagram.com" aria-label="Instagram"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68642b559d94bcc3773fc317_social-insta.svg" alt="" loading="lazy"></a>
+          <a class="soc" href="https://x.com" aria-label="X"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68642b569d94bcc3773fc318_social-x.svg" alt="" loading="lazy"></a>
+          <a class="soc" href="https://dribbble.com" aria-label="Dribbble"><img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/686464e5c7256ddd81c074ee_dribble.svg" alt="" loading="lazy"></a>
         </div>
       </div>
       <a class="menu-feature" href="contact.html">
         <strong>Contact ↗</strong>
-        <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68474f06add2ed267a218556_link.png" alt="">
+        <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68474f06add2ed267a218556_link.png" alt="" loading="lazy">
       </a>
       <div class="menu-legal">
         <a href="legal/privacy.html">Privacy Policy</a>
@@ -150,20 +167,20 @@
       </div>
       <div class="logo-rail" aria-label="Collaborators">
         <div class="track">
-          <div class="partner partner-dark"><img src="assets/swiggy-dark.svg" alt="Swiggy"><span>Swiggy</span></div>
-          <div class="partner partner-dark"><img src="assets/zepto-dark.svg" alt="Zepto"><span>Zepto</span></div>
-          <div class="partner partner-dark"><img src="assets/instamart-dark.svg" alt="Instamart"><span>Instamart</span></div>
-          <div class="partner partner-dark"><img src="assets/blinkit-dark.svg" alt="Blinkit"><span>Blinkit</span></div>
-          <div class="partner partner-dark"><img src="assets/tanishq-dark.svg" alt="Tanishq"><span>Tanishq</span></div>
-          <div class="partner partner-dark"><img src="assets/croma-dark.svg" alt="Croma"><span>Croma</span></div>
-          <div class="partner partner-dark"><img src="assets/malabar-dark.svg" alt="Malabar"><span>Malabar</span></div>
-          <div class="partner partner-dark"><img src="assets/swiggy-dark.svg" alt="Swiggy"><span>Swiggy</span></div>
-          <div class="partner partner-dark"><img src="assets/zepto-dark.svg" alt="Zepto"><span>Zepto</span></div>
-          <div class="partner partner-dark"><img src="assets/instamart-dark.svg" alt="Instamart"><span>Instamart</span></div>
-          <div class="partner partner-dark"><img src="assets/blinkit-dark.svg" alt="Blinkit"><span>Blinkit</span></div>
-          <div class="partner partner-dark"><img src="assets/tanishq-dark.svg" alt="Tanishq"><span>Tanishq</span></div>
-          <div class="partner partner-dark"><img src="assets/croma-dark.svg" alt="Croma"><span>Croma</span></div>
-          <div class="partner partner-dark"><img src="assets/malabar-dark.svg" alt="Malabar"><span>Malabar</span></div>
+          <div class="partner partner-dark"><img src="assets/swiggy-dark.svg" alt="Swiggy" loading="lazy"><span>Swiggy</span></div>
+          <div class="partner partner-dark"><img src="assets/zepto-dark.svg" alt="Zepto" loading="lazy"><span>Zepto</span></div>
+          <div class="partner partner-dark"><img src="assets/instamart-dark.svg" alt="Instamart" loading="lazy"><span>Instamart</span></div>
+          <div class="partner partner-dark"><img src="assets/blinkit-dark.svg" alt="Blinkit" loading="lazy"><span>Blinkit</span></div>
+          <div class="partner partner-dark"><img src="assets/tanishq-dark.svg" alt="Tanishq" loading="lazy"><span>Tanishq</span></div>
+          <div class="partner partner-dark"><img src="assets/croma-dark.svg" alt="Croma" loading="lazy"><span>Croma</span></div>
+          <div class="partner partner-dark"><img src="assets/malabar-dark.svg" alt="Malabar" loading="lazy"><span>Malabar</span></div>
+          <div class="partner partner-dark"><img src="assets/swiggy-dark.svg" alt="Swiggy" loading="lazy"><span>Swiggy</span></div>
+          <div class="partner partner-dark"><img src="assets/zepto-dark.svg" alt="Zepto" loading="lazy"><span>Zepto</span></div>
+          <div class="partner partner-dark"><img src="assets/instamart-dark.svg" alt="Instamart" loading="lazy"><span>Instamart</span></div>
+          <div class="partner partner-dark"><img src="assets/blinkit-dark.svg" alt="Blinkit" loading="lazy"><span>Blinkit</span></div>
+          <div class="partner partner-dark"><img src="assets/tanishq-dark.svg" alt="Tanishq" loading="lazy"><span>Tanishq</span></div>
+          <div class="partner partner-dark"><img src="assets/croma-dark.svg" alt="Croma" loading="lazy"><span>Croma</span></div>
+          <div class="partner partner-dark"><img src="assets/malabar-dark.svg" alt="Malabar" loading="lazy"><span>Malabar</span></div>
         </div>
       </div>
     </section>
@@ -179,10 +196,10 @@
         </div>
         <div class="work-list">
             <a class="project" href="work/bronx.html">
-              <img src="assets/work-bronx.jpg" alt="Lumedia LED billboard — Big Screen Bright Future">
+              <img src="assets/work-bronx.jpg" alt="Lumedia LED billboard — Big Screen Bright Future" loading="lazy">
             </a>
             <a class="project" href="work/nexora.html">
-              <img src="assets/work-nexora.jpg" alt="Lumedia LED billboard — Upgrade to Digital Motion">
+              <img src="assets/work-nexora.jpg" alt="Lumedia LED billboard — Upgrade to Digital Motion" loading="lazy">
             </a>
         </div>
         <div class="work-more">
@@ -193,47 +210,37 @@
 
     <section>
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head why-head">
           <p class="kicker"><i></i> Why work with us</p>
-          <h2 class="lede">We help ambitious brands make their mark—with clarity and precision.</h2>
         </div>
         <div class="why-layout">
+          <div class="why-carousel" data-why-carousel aria-roledescription="carousel" aria-label="Why work with us">
+            <div class="why-viewport">
+              <div class="why-track">
+                <p class="why-slide lede is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">We partner with visionary brands to design culture-shaping work that stays.</p>
+                <p class="why-slide lede" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">We build iconic campaigns for ambitious brands that leave a footprint, not just an impression.</p>
+                <p class="why-slide lede" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">Bold brands. Timeless impact. We create what lasts.</p>
+              </div>
+            </div>
+            <div class="why-dots" role="tablist" aria-label="Slide controls">
+              <button type="button" class="why-dot is-active" role="tab" aria-selected="true" aria-label="Show slide 1"></button>
+              <button type="button" class="why-dot" role="tab" aria-selected="false" aria-label="Show slide 2"></button>
+              <button type="button" class="why-dot" role="tab" aria-selected="false" aria-label="Show slide 3"></button>
+            </div>
+          </div>
           <div class="orbit">
             <h3>A strong team of experts</h3>
             <div class="spin s1">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68486e551e81c973a52e348c_man-1.webp" alt="">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684870bdbf79a58ae417cf69_woman-2.webp" alt="">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684870cb6b8e12c418d97a81_man-3.webp" alt="">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68486ea1b62e298a9c363bac_woman-1.webp" alt="">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68486e551e81c973a52e348c_man-1.webp" alt="" loading="lazy">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684870bdbf79a58ae417cf69_woman-2.webp" alt="" loading="lazy">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684870cb6b8e12c418d97a81_man-3.webp" alt="" loading="lazy">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/68486ea1b62e298a9c363bac_woman-1.webp" alt="" loading="lazy">
             </div>
             <div class="spin s2">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684871662c80e8b701890ee6_woman-3.webp" alt="">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684871849d0c3565cf0f8eb0_man-2.webp" alt="">
-              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/6848719db62e298a9c37c483_woman-4.webp" alt="">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684871662c80e8b701890ee6_woman-3.webp" alt="" loading="lazy">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684871849d0c3565cf0f8eb0_man-2.webp" alt="" loading="lazy">
+              <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/6848719db62e298a9c37c483_woman-4.webp" alt="" loading="lazy">
             </div>
-          </div>
-          <div class="why-side">
-            <article class="chat-card">
-              <p class="sub">REAL-TIME COLLABORATION</p>
-              <div class="chat" data-chat>
-                <div class="chat-line">
-                  <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684888cf08fba2b302dfdb73_client.webp" alt="">
-                  <div class="bubble">Hey!</div>
-                </div>
-                <div class="chat-line"><div class="bubble">The website looks awesome</div></div>
-                <div class="chat-line"><div class="bubble">Can we update the homepage banner?</div></div>
-                <div class="chat-line right">
-                  <div class="bubble me">Hi Philip!</div>
-                  <img src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/684870cb6b8e12c418d97a81_man-3.webp" alt="">
-                </div>
-                <div class="chat-line right"><div class="bubble me">Sure, we’ll have our team on it</div></div>
-              </div>
-            </article>
-            <article class="price-card">
-              <h3>Transparent pricing model</h3>
-              <a class="btn light price-pill" href="contact.html"><span><em>Form</em><em>Form</em></span><i class="dot"></i></a>
-              <img class="glass" src="https://cdn.prod.website-files.com/6840876d4d1ed0e8e2a330b9/6848912294e85cf3c7cb571c_glass-1.webp" alt="">
-            </article>
           </div>
         </div>
       </div>
@@ -260,27 +267,13 @@
       <div class="footer-cols">
         <div>
           <a href="index.html">Home</a>
-          <a href="studio.html">Studio</a>
-          <a href="works.html">Work</a>
-        </div>
-        <div>
-          <a href="work/bronx.html">Bronx</a>
-          <a href="work/nexora.html">Nexora</a>
-          <a href="work/carlo.html">Carlo</a>
-        </div>
-        <div>
-          <a href="blog/intentional-design.html">Intentional design</a>
-          <a href="blog/visual-storytelling.html">Visual storytelling</a>
-          <a href="blog/brand-expression.html">Brand expression</a>
-        </div>
-        <div>
           <a href="contact.html">Contact</a>
           <a href="legal/privacy.html">Privacy policy</a>
           <a href="legal/terms.html">Terms of use</a>
         </div>
       </div>
       <div class="footer-news">
-        <h4>Join the newsletter</h4>
+        <h4>Join the MediaHouse</h4>
         <form class="news" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form>
           <p class="sr-only" aria-hidden="true">Don’t fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></p>
           <input type="hidden" name="form-name" value="newsletter">
@@ -297,6 +290,6 @@
   </footer>
 
 
-  <script src="js/main.js?v=15"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 </html>

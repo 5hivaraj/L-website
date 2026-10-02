@@ -150,19 +150,6 @@
     }, 2800);
   }
 
-  const chat = document.querySelector("[data-chat]");
-  if (chat && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const lines = [...chat.querySelectorAll(".chat-line")];
-    const play = () => {
-      lines.forEach((line) => line.classList.remove("show"));
-      lines.forEach((line, i) => {
-        window.setTimeout(() => line.classList.add("show"), 500 + i * 1500);
-      });
-    };
-    play();
-    window.setInterval(play, 11000);
-  }
-
   document.querySelectorAll("[data-count]").forEach((el) => {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || "";
@@ -200,21 +187,70 @@
         const ok = form.parentElement.querySelector(".success");
         if (ok) ok.style.display = "block";
       };
-      // Netlify Forms: POST encoded body so submissions arrive in the Netlify dashboard.
-      if (form.hasAttribute("data-netlify") || form.getAttribute("netlify") !== null) {
-        const data = new FormData(form);
-        if (!data.get("form-name")) {
-          data.set("form-name", form.getAttribute("name") || "form");
-        }
+
+      const data = new FormData(form);
+      if (!data.get("form-name")) {
+        data.set("form-name", form.getAttribute("name") || "form");
+      }
+
+      const endpoint = form.getAttribute("data-form-endpoint");
+      const host = location.hostname || "";
+      const onNetlify = /\.netlify\.app$|\.netlify\.com$/i.test(host);
+
+      // Optional custom endpoint (e.g. form backend). Never commit secrets here —
+      // set data-form-endpoint on the form element in the environment that needs it.
+      if (endpoint) {
         try {
-          await fetch("/", {
+          await fetch(endpoint, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: data,
+          });
+        } catch (e) {}
+        showSuccess();
+        return;
+      }
+
+      // Netlify Forms when hosted on Netlify.
+      if (onNetlify && (form.hasAttribute("data-netlify") || form.getAttribute("netlify") !== null)) {
+        try {
+          const res = await fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(data).toString(),
           });
+          if (res.ok) showSuccess();
         } catch (e) {}
+        return;
       }
-      showSuccess();
+
+      // EC2 / plain Nginx static hosting: mailto fallback (no server-side form processor).
+      const formName = (form.getAttribute("name") || data.get("form-name") || "form").toString().toLowerCase();
+      const lines = [];
+      data.forEach((value, key) => {
+        if (key === "bot-field" || key === "form-name") return;
+        lines.push(key + ": " + String(value));
+      });
+      const to =
+        formName === "newsletter" || formName === "career"
+          ? "career@lumediaads.com"
+          : "contact@lumediaads.com";
+      const subject =
+        formName === "newsletter"
+          ? "Lumedia newsletter signup"
+          : formName === "career"
+            ? "Lumedia career enquiry"
+            : formName === "contact"
+              ? "Lumedia project enquiry"
+              : "Lumedia website form";
+      const mailto =
+        "mailto:" +
+        to +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(lines.join("\n"));
+      window.location.href = mailto;
     });
   });
 
@@ -341,6 +377,63 @@
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+
+  const whyCarousel = document.querySelector("[data-why-carousel]");
+  if (whyCarousel) {
+    const slides = [...whyCarousel.querySelectorAll(".why-slide")];
+    const dots = [...whyCarousel.querySelectorAll(".why-dot")];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+    let timer = null;
+
+    const goTo = (next) => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    };
+
+    const stop = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    };
+    const start = () => {
+      if (slides.length < 2) return;
+      stop();
+      timer = window.setInterval(() => goTo(index + 1), 1750);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => goTo(i));
+    });
+
+    whyCarousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goTo(index + 1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goTo(index - 1);
+      }
+    });
+    whyCarousel.setAttribute("tabindex", "0");
+
+    goTo(0);
+    start();
+
+    if (reduceMotion) {
+      // Still auto-advance; CSS already disables motion.
+    }
+  }
 
   window.LUMEDIA_BASE = base;
 })();
